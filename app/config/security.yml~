@@ -1,0 +1,45 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+
+
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        login_firewall:
+            pattern: ^/login$
+            anonymous: ~       
+        secured_area:
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login_check
+            logout:
+                path: /logout
+                target: /
+
+    providers:
+        in_memory:
+            memory:
+                users: 
+                    admin: { password: %admin_password%, roles: 'ROLE_ADMIN' }
+                
+    access_control:
+
+
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
+

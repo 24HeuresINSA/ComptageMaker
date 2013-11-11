@@ -1,0 +1,7 @@
+comptage_maker_comptage_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ComptageMakerComptageBundle:Default:index }
+
+comptage_home:
+    pattern: /
+    defaults: { _controller: ComptageMakerComptageBundle:}
