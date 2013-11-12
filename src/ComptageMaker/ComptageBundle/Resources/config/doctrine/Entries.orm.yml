@@ -1,0 +1,16 @@
+ComptageMaker\ComptageBundle\Entity\Entries:
+    type: entity
+    table: null
+    repositoryClass: ComptageMaker\ComptageBundle\Entity\EntriesRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        plage:
+            type: string
+            length: 255
+        valeur:
+            type: integer
+    lifecycleCallbacks: {  }

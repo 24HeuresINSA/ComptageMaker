@@ -4,4 +4,27 @@ comptage_maker_comptage_homepage:
 
 comptage_home:
     pattern: /
-    defaults: { _controller: ComptageMakerComptageBundle:}
+    defaults: { _controller: ComptageMakerComptageBundle:Text:home }
+
+
+comptage_faq:
+    pattern: /faq
+    defaults: { _controller: ComptageMakerComptageBundle:Text:faq }
+
+comptage_login:
+    pattern: /login
+    defaults: { _controller: ComptageMakerComptageBundle:Admin:login }
+
+comptage_login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
+
+comptage_list:
+    pattern: /list
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:listCounts }
+
+create_plages:
+    pattern: /plage
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:setPlages }

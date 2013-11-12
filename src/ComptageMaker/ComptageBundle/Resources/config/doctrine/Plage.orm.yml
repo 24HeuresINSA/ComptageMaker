@@ -1,0 +1,18 @@
+ComptageMaker\ComptageBundle\Entity\Plage:
+    type: entity
+    table: null
+    repositoryClass: ComptageMaker\ComptageBundle\Entity\PlageRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nom:
+            type: string
+            length: 255
+        debut:
+            type: time
+        fin:
+            type: time
+    lifecycleCallbacks: {  }

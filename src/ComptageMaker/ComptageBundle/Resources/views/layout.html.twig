@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}ComptagesMaker{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inscriptions aux comptages des 24 Heures de l'INSA">
+    <meta name="author" content="24Heures de l'INSA">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+    {% block head %}
+
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                    <a class="navbar-brand" href="{{ path('comptage_home') }}">ComptageMaker</a>
+                    <a class="navbar-brand" href="{{ path('comptage_faq') }}">Présentation</a>
+                    <a class="navbar-brand" href="{{ path('comptage_list') }}">Liste des comptages</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a class="navbar-brand pull-right" href="{{ path('logout') }}">Logout</a>
+
+
+                    {% else %}
+                    <a class="navbar-brand pull-right" href="{{ path('comptage_login') }}">Admin Login</a>
+                    {% endif%}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+
+<div class="jumbotron">
+    {% block body %}
+    {% endblock %}
+</div>
+<div>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>

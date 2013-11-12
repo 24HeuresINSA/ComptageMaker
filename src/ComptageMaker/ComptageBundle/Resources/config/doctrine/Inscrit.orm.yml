@@ -1,0 +1,30 @@
+ComptageMaker\ComptageBundle\Entity\Inscrit:
+    type: entity
+    table: null
+    repositoryClass: ComptageMaker\ComptageBundle\Entity\InscritRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        nom:
+            type: string
+            length: 255
+        prenom:
+            type: string
+            length: 255
+        mail:
+            type: string
+            length: 255
+        tel:
+            type: string
+            length: 255
+        association:
+            type: string
+            length: 255
+        voiture:
+            type: boolean
+        commentaires:
+            type: text
+    lifecycleCallbacks: {  }

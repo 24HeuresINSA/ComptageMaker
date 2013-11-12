@@ -1,0 +1,25 @@
+ComptageMaker\ComptageBundle\Entity\Comptage:
+    type: entity
+    table: null
+    repositoryClass: ComptageMaker\ComptageBundle\Entity\ComptageRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        debut:
+            type: datetime
+        fin:
+            type: datetime
+        briefing:
+            type: datetime
+        type:
+            type: string
+            length: 255
+        prix:
+            type: integer
+        etat:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }
