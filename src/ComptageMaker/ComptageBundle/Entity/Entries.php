@@ -77,7 +77,7 @@ class Entries
      * @return integer 
      */
     public function getValeur()
-    {   
+    {
         return $this->valeur;
     }
 }

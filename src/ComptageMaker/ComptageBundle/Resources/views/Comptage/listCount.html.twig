@@ -1,0 +1,14 @@
+{% extends 'ComptageMakerComptageBundle::layout.html.twig' %}
+{% block title%}ComptageMaker - Liste des comptages{% endblock %}
+
+{% block body %}
+
+
+{% for count in counts  %}
+    {{ include(
+        'ComptageMakerComptageBundle:Comptage:count.html.twig',
+    { 'count': count }
+    ) }}
+{% endfor %}
+
+{% endblock %}

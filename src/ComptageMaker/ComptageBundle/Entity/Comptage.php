@@ -40,7 +40,7 @@ class Comptage
     private $prix;
 
     /**
-     * @var string
+     * @var boolean
      */
     private $etat;
 
@@ -173,7 +173,7 @@ class Comptage
     /**
      * Set etat
      *
-     * @param string $etat
+     * @param boolean $etat
      * @return Comptage
      */
     public function setEtat($etat)
@@ -186,7 +186,7 @@ class Comptage
     /**
      * Get etat
      *
-     * @return string 
+     * @return boolean
      */
     public function getEtat()
     {

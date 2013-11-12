@@ -1,0 +1,13 @@
+ComptageMaker\ComptageBundle\Entity\TextBlock:
+    type: entity
+    table: null
+    repositoryClass: ComptageMaker\ComptageBundle\Entity\TextBlockRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        text:
+            type: text
+    lifecycleCallbacks: {  }

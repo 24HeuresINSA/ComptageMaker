@@ -27,4 +27,9 @@ ComptageMaker\ComptageBundle\Entity\Inscrit:
             type: boolean
         commentaires:
             type: text
+
+    oneToOne:
+        plage:
+          targetEntity: Plage
+
     lifecycleCallbacks: {  }

@@ -1,20 +1,15 @@
 parameters:
-    database_driver: pdo_mysql
-    database_host: localhost
-    database_port: ~
-    database_name: PUT YOUR DB NAME HERE
-    database_user: DB USER
-    database_password: DB PASSWORD
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
 
-    mailer_transport: gmail
-    mailer_host: ~
-    mailer_user: PUT GMAIL ADDRESS HERE
-    mailer_password: PASSWORD FOR GMAIL
-    mailer_encryption: ssl
-    mailer_auth: login
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
 
-    locale: fr
-    secret: ThisTokenIsNotSoSecretChangeIt
-
-    app_webmaster: 24h
-    admin_password: PASSWORD FOR ADMIN USER
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt

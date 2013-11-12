@@ -23,7 +23,7 @@ logout:
 
 comptage_list:
     pattern: /list
-    defaults: { _controller: ComptageMakerComptageBundle:Comptage:listCounts }
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:listCount }
 
 create_plages:
     pattern: /plage

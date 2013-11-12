@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 class ComptageController extends Controller
 {
 
-    public function listCountsAction()
+    public function listCountAction()
     {
-        return $this->render('ComptageMakerComptageBundle:Comptage:listCounts.html.twig');
+        $counts = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Comptage')->findAll();
+        return $this->render('ComptageMakerComptageBundle:Comptage:listCount.html.twig', array('counts' => $counts));
     }
 
     public function setPlagesAction()

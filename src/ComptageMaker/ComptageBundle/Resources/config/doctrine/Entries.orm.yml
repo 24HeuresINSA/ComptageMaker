@@ -8,9 +8,11 @@ ComptageMaker\ComptageBundle\Entity\Entries:
             id: true
             generator:
                 strategy: AUTO
-        plage:
-            type: string
-            length: 255
         valeur:
             type: integer
     lifecycleCallbacks: {  }
+
+
+    oneToOne:
+        plage:
+          targetEntity: Plage

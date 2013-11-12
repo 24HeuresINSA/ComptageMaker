@@ -20,6 +20,5 @@ ComptageMaker\ComptageBundle\Entity\Comptage:
         prix:
             type: integer
         etat:
-            type: string
-            length: 255
+            type: boolean
     lifecycleCallbacks: {  }

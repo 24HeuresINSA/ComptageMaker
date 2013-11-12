@@ -9,14 +9,13 @@
     <meta name="author" content="24Heures de l'INSA">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" type="text/css" href="{{asset('bundles/comptagemakercomptage/css/layout.css')}}">
     <!-- Optional theme -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -27,7 +26,6 @@
         <div class="navbar-inner">
             <div class="container-fluid">
                     <a class="navbar-brand" href="{{ path('comptage_home') }}">ComptageMaker</a>
-                    <a class="navbar-brand" href="{{ path('comptage_faq') }}">Présentation</a>
                     <a class="navbar-brand" href="{{ path('comptage_list') }}">Liste des comptages</a>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <a class="navbar-brand pull-right" href="{{ path('logout') }}">Logout</a>
