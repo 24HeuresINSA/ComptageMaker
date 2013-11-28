@@ -1,0 +1,26 @@
+ComptageMaker\ComptageBundle\Entity\Session:
+    type: entity
+    table: null
+    repositoryClass: ComptageMaker\ComptageBundle\Entity\SessionRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        entries:
+            type: integer
+        type:
+            type: string
+        prix:
+            type: integer
+    lifecycleCallbacks: {  }
+
+
+    oneToOne:
+        plage:
+          targetEntity: Plage
+
+    manyToOne:
+        inscrits:
+          targetEntity: Inscrit

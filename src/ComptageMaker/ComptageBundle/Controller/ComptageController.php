@@ -16,22 +16,22 @@ class ComptageController extends Controller
         return $this->render('ComptageMakerComptageBundle:Comptage:listCount.html.twig', array('counts' => $counts));
     }
 
-    public function setPlagesAction()
+    public function changeStatusAction($id)
     {
-        $a = new Plage();
-        $a->setNom('matin')
-            ->setDebut(new \DateTime('7:30:00'))
-            ->setFin(new \DateTime('9:30:00'));
-        $p = new Plage();
-        $p->setNom('aprem')
-            ->setDebut(new \DateTime('17:00:00'))
-            ->setFin(new \DateTime('19:00:00'));
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($a);
-        $em->persist($p);
-        $em->flush();
-
-        return new Response('done');
+        $count = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Comptage')->find($id);
+        $newStatus = !($count->getEtat());
+        $count->setEtat($newStatus);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirect($this->generateUrl('comptage_list'));
     }
 
+    public function editAction($id)
+    {
+        //formulaire
+    }
+
+    public function createAction()
+    {
+        //formulaire
+    }
 }

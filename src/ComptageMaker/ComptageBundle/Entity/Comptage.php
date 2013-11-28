@@ -17,32 +17,23 @@ class Comptage
     /**
      * @var \DateTime
      */
-    private $debut;
-
-    /**
-     * @var \DateTime
-     */
-    private $fin;
-
-    /**
-     * @var \DateTime
-     */
     private $briefing;
 
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var integer
-     */
-    private $prix;
-
-    /**
      * @var boolean
+     * ouvert true, fermé false
      */
     private $etat;
+
+    /**
+     * @var \ComptageMaker\ComptageBundle\Entity\Session
+     */
+    private $sessions;
+
+    /**
+     * @var \DateTime
+     */
+    private $date;
 
 
     /**
@@ -53,52 +44,6 @@ class Comptage
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set debut
-     *
-     * @param \DateTime $debut
-     * @return Comptage
-     */
-    public function setDebut($debut)
-    {
-        $this->debut = $debut;
-    
-        return $this;
-    }
-
-    /**
-     * Get debut
-     *
-     * @return \DateTime 
-     */
-    public function getDebut()
-    {
-        return $this->debut;
-    }
-
-    /**
-     * Set fin
-     *
-     * @param \DateTime $fin
-     * @return Comptage
-     */
-    public function setFin($fin)
-    {
-        $this->fin = $fin;
-    
-        return $this;
-    }
-
-    /**
-     * Get fin
-     *
-     * @return \DateTime 
-     */
-    public function getFin()
-    {
-        return $this->fin;
     }
 
     /**
@@ -125,52 +70,6 @@ class Comptage
     }
 
     /**
-     * Set type
-     *
-     * @param string $type
-     * @return Comptage
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string 
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set prix
-     *
-     * @param integer $prix
-     * @return Comptage
-     */
-    public function setPrix($prix)
-    {
-        $this->prix = $prix;
-    
-        return $this;
-    }
-
-    /**
-     * Get prix
-     *
-     * @return integer 
-     */
-    public function getPrix()
-    {
-        return $this->prix;
-    }
-
-    /**
      * Set etat
      *
      * @param boolean $etat
@@ -191,5 +90,69 @@ class Comptage
     public function getEtat()
     {
         return $this->etat;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add sessions
+     *
+     * @param \ComptageMaker\ComptageBundle\Entity\Session $sessions
+     * @return Comptage
+     */
+    public function addSession(\ComptageMaker\ComptageBundle\Entity\Session $sessions)
+    {
+        $this->sessions[] = $sessions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove sessions
+     *
+     * @param \ComptageMaker\ComptageBundle\Entity\Session $sessions
+     */
+    public function removeSession(\ComptageMaker\ComptageBundle\Entity\Session $sessions)
+    {
+        $this->sessions->removeElement($sessions);
+    }
+
+    /**
+     * Get sessions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Comptage
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

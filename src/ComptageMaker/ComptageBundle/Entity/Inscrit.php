@@ -40,9 +40,9 @@ class Inscrit
     private $association;
 
     /**
-     * @ORM\OneToOne(targetEntity="Plage")
+     * @ORM\ManyToMany(targetEntity="Session")
      */
-    protected $plage;
+    protected $session;
 
     /**
      * @var boolean
@@ -242,4 +242,10 @@ class Inscrit
     {
         return $this->commentaires;
     }
+    /**
+     * @var \ComptageMaker\ComptageBundle\Entity\Plage
+     */
+    private $plage;
+
+
 }

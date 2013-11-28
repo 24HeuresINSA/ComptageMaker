@@ -25,6 +25,14 @@ comptage_list:
     pattern: /list
     defaults: { _controller: ComptageMakerComptageBundle:Comptage:listCount }
 
-create_plages:
-    pattern: /plage
-    defaults: { _controller: ComptageMakerComptageBundle:Comptage:setPlages }
+comptage_change_status:
+    pattern: /count/{id}/change
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:changeStatus }
+
+comptage_edit:
+    pattern: /count/{id}/edit
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:edit }
+
+comptage_create:
+    pattern: /count/create
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:create }

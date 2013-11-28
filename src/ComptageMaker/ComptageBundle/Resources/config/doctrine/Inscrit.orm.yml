@@ -28,8 +28,4 @@ ComptageMaker\ComptageBundle\Entity\Inscrit:
         commentaires:
             type: text
 
-    oneToOne:
-        plage:
-          targetEntity: Plage
-
     lifecycleCallbacks: {  }

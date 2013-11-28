@@ -8,17 +8,26 @@ ComptageMaker\ComptageBundle\Entity\Comptage:
             id: true
             generator:
                 strategy: AUTO
-        debut:
-            type: datetime
-        fin:
-            type: datetime
+
         briefing:
             type: datetime
-        type:
-            type: string
-            length: 255
-        prix:
-            type: integer
         etat:
             type: boolean
+
+        date:
+            type: date
+
+    manyToMany:
+      sessions:
+        targetEntity: Session
+        joinTable:
+          name: comptages_sessions
+          joinColumns:
+            comptage_id:
+              referencedColumnName: id
+          inverseJoinColumns:
+            session_id:
+              referencedColumnName: id
+              unique: true
+
     lifecycleCallbacks: {  }
