@@ -1,0 +1,15 @@
+session_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: ComptageMakerComptageBundle:Session:edit }
+
+session_create:
+    pattern: /{comptageId}/create
+    defaults: { _controller: ComptageMakerComptageBundle:Session:create }
+
+session_remove:
+    pattern: /{id}/remove
+    defaults: { _controller: ComptageMakerComptageBundle:Session:remove }
+
+session_showListInscrits:
+    pattern: /{id}/inscrits
+    defaults: { _controller: ComptageMakerComptageBundle:Session:showListInscrits }

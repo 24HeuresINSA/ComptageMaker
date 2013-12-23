@@ -4,7 +4,6 @@
         <h3>Comptage du {{ include('ComptageMakerComptageBundle:Comptage:day.html.twig', { 'date': count.date })}}</h3>
         {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('comptage_change_status',{ 'id': count.id }) }}">Changer le statut du comptage</a>
-        <a href="{{ path('comptage_edit',{ 'id': count.id }) }}">Editer le comptage</a>
         {% endif %}
     </div>
     <div class="panel-body">
@@ -16,45 +15,25 @@
     </div>
     <table>
         <tr>
-            <th>
-                Plage
-            </th>
-            <th>
-                Début
-            </th>
-            <th>
-                Fin
-            </th>
-            <th>
-                Type
-            </th>
-            <th>
-                Places
-            </th>
-            <th>
-                Prix/heure
-            </th>
+            <th>Plage</th>
+            <th>Début</th>
+            <th>Fin</th>
+            <th>Type</th>
+            <th>Places</th>
+            <th>Prix/heure</th>
+            <th></th>
         </tr>
         {% for session in count.sessions %}
             <tr>
-                <td>
-                    {{ session.plage.nom }}
-                </td>
-                <td>
-                    {{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':session.plage.debut })}}
-                </td>
-                <td>
-                    {{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':session.plage.fin })}}
-                </td>
-                <td>
-                    {{ session.type }}
-                </td>
-                <td>
-                    {{ session.entries }}
-                </td>
-                <td>
-                    {{ session.prix }}€
-                </td>
+                <td><strong>{{ session.plage.nom }}</strong></td>
+                <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':session.plage.debut })}}</td>
+                <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':session.plage.fin })}}</td>
+                <td>{{ session.type }}</td>
+                <td>{{ session.entries }}</td>
+                <td>{{ session.prix }}€</td>
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <td><a class="btn btn-primary" href="{{ path('inscrit_create',{ 'sessionId': session.id }) }}">S'inscrire</a></td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>

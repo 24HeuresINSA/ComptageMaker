@@ -1,0 +1,15 @@
+comptage_change_status:
+    pattern: /{id}/change
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:changeStatus }
+
+comptage_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:edit }
+
+comptage_create:
+    pattern: /create
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:create }
+
+comptage_remove:
+    pattern: /{id}/remove
+    defaults: { _controller: ComptageMakerComptageBundle:Comptage:remove }

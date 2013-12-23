@@ -8,6 +8,7 @@
     <meta name="description" content="Inscriptions aux comptages des 24 Heures de l'INSA">
     <meta name="author" content="24Heures de l'INSA">
     <!-- Latest compiled and minified CSS -->
+    <link rel="shortcut icon" href="{{ asset('bundles/comptagemakercomptage/img/favicon.ico')}}">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('bundles/comptagemakercomptage/css/layout.css')}}">
     <!-- Optional theme -->
@@ -25,11 +26,12 @@
     <div class="navbar navbar-inverse navbar-static-top" role="navigation">
         <div class="navbar-inner">
             <div class="container-fluid">
-                <ul>
+                <ul class="nav">
                     <li><a class="navbar-brand" href="{{ path('comptage_home') }}">ComptageMaker</a></li>
                     <li><a class="navbar-brand" href="{{ path('comptage_list') }}">Liste des comptages</a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a class="navbar-brand pull-right" href="{{ path('logout') }}">Logout</a></li>
+                        <li><a class="navbar-brand" href="{{ path('admin_dashboard')}}">Dashboard</a></li>
                     {% else %}
                     <li><a class="navbar-brand pull-right" href="{{ path('comptage_login') }}">Admin Login</a></li>
                     {% endif%}

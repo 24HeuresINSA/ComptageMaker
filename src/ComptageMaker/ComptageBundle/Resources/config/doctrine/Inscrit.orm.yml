@@ -20,12 +20,18 @@ ComptageMaker\ComptageBundle\Entity\Inscrit:
         tel:
             type: string
             length: 255
-        association:
-            type: string
-            length: 255
         voiture:
             type: boolean
         commentaires:
             type: text
+            nullable: true
+
+
+    manyToOne:
+        association:
+          targetEntity: Association
+          joinColumn:
+            name: association_id
+            referencedColumnName: id
 
     lifecycleCallbacks: {  }

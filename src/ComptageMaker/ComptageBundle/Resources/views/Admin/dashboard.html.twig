@@ -1,0 +1,183 @@
+{% extends 'ComptageMakerComptageBundle::layout.html.twig' %}
+
+{% block title %}ComptageMaker - Dashboard{% endblock %}
+
+{% block div %}
+
+{% endblock %}
+
+{% block body %}
+
+    <h2>Dashboard d'Administration</h2>
+
+    <div class="panel">
+        <div class="panel-heading">
+            Entité Plage
+        </div>
+        <div class="panel-body">
+            <h3>Description</h3>
+            <p></p>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th><em>Edition</em></th>
+                    <th><em>Suppression</em></th>
+                </tr>
+                {% for plage in plages %}
+                    <tr>
+                        <td>{{ plage.id }}</td>
+                        <td>{{ plage.nom }}</td>
+                        <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':plage.debut })}}</td>
+                        <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':plage.fin })}}</td>
+                        <td><a href="{{ path('plage_edit',{ 'id' : plage.id}) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
+                        <td><a href="{{ path('plage_remove', { 'id' : plage.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td><a href="{{ path('plage_create') }}"><i class="glyphicon glyphicon-plus"></i></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-heading">
+            Entité Comptage
+        </div>
+        <div class="panel-body">
+            <h3>Description</h3>
+            <p></p>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre de sessions</th>
+                        <th>Date</th>
+                        <th>Horaire du briefing</th>
+                        <th>Etat</th>
+                        <th>Commentaires</th>
+                        <th><em>Edition</em></th>
+                        <th><em>Suppression</em></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for comptage in comptages %}
+                    <tr>
+                        <td>{{ comptage.id }}</td>
+                        <td>{{ comptage.sessions | length }}</td>
+                        <td>{{ include('ComptageMakerComptageBundle:Comptage:day.html.twig', { 'date':comptage.date }) }}</td>
+                        <td>{{ include('ComptageMakerComptageBundle:Comptage:date.html.twig', { 'date':comptage.briefing }) }}</td>
+                        <td>{% if comptage.etat %} Ouvert {% else %} Fermé {% endif %}</td>
+                        <td>{{ comptage.comment }}</td>
+                        <td><a href="{{ path('comptage_edit',{'id' : comptage.id}) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
+                        <td><a href="{{ path('comptage_remove', {'id' : comptage.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                    </tr>
+
+                    <tr class="success">
+                        <th>Session</th>
+                        <th>Type</th>
+                        <th>Places</th>
+                        <th>Prix</th>
+                        <th>Inscrits</th>
+                        <th><em>Edition</em></th>
+                        <th><em>Suppression</em></th>
+                    </tr>
+                    {% for session in comptage.sessions %}
+                        <tr class="success">
+                            <td>Session {{ session.plage.nom }}, id {{ session.id }}</td>
+                            <td>Type : {{ session.type }}</td>
+                            <td>Places : {{ session.entries }}</td>
+                            <td>Prix : {{ session.prix }}€/h</td>
+                            <td>Inscrits : {{ session.inscrits | length }}{% if session.inscrits != [] %}<a href="{{ path('session_showListInscrits',{'id' : session.id }) }}"><i class="glyphicon glyphicon-arrow-right"></i></a>{% endif %}</td>
+                            <td><a href="{{ path('session_edit',{'id' : session.id}) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
+                            <td><a href="{{ path('session_remove', {'id' : session.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                        </tr>
+                    {% endfor %}
+                        <tr class="success">
+                            <td><a href="{{ path('session_create', { 'comptageId': comptage.id }) }}"><i class="glyphicon glyphicon-plus"></i></a></td>
+                        </tr>
+                {% endfor %}
+                <tr>
+                    <td><a href="{{ path('comptage_create') }}"><i class="glyphicon glyphicon-plus"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-heading">
+            Entité TextBlock
+        </div>
+        <div class="panel-body">
+            <h3>Description</h3>
+            <p></p>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Texte</th>
+                    <th><em>Edition</em></th>
+                    <th><em>Suppression</em></th>
+                </tr>
+                </thead>
+                {% for textblock in textblocks %}
+                <tbody>
+                    <tr>
+                        <td>{{ textblock.id }}</td>
+                        <td>{{ textblock.text }}</td>
+                        <td><a href="{{ path('textblock_edit', { 'id': textblock.id }) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
+                        <td><a href="{{ path('textblock_remove', { 'id': textblock.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+                <tr>
+                    <td><a href="{{ path('textblock_create') }}"><i class="glyphicon glyphicon-plus"></i></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-heading">
+            Entité Association
+        </div>
+        <div class="panel-body">
+            <h3>Description</h3>
+            <p></p>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th><em>Suppression</em></th>
+                </tr>
+                </thead>
+                {% for association in associations %}
+                <tbody>
+                    <tr>
+                        <td>{{ association.id }}</td>
+                        <td>{{ association.name }}</td>
+                        <td><a href="{{ path('association_remove', { 'id': association.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+                <tr>
+                    <td><a href="{{ path('association_create') }}"><i class="glyphicon glyphicon-plus"></i></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

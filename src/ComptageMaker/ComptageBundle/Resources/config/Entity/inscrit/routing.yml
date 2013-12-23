@@ -1,0 +1,7 @@
+inscrit_create:
+    pattern: /{sessionId}/create
+    defaults: { _controller: ComptageMakerComptageBundle:Inscrit:create }
+
+inscrit_remove:
+    pattern: /{id}/remove
+    defaults: { _controller: ComptageMakerComptageBundle:Inscrit:remove }

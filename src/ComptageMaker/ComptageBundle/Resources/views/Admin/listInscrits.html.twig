@@ -1,0 +1,39 @@
+{% extends 'ComptageMakerComptageBundle::layout.html.twig' %}
+
+{% block title %}ComptageMaker - Inscription{% endblock %}
+
+{% block div %}
+
+{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Mail</th>
+                <th>Téléphone</th>
+                <th>Association</th>
+                <th>Voiture</th>
+                <th>Commentaires</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for inscrit in inscrits %}
+            <tr>
+                <td>{{ inscrit.id }}</td>
+                <td>{{ inscrit.nom }}</td>
+                <td>{{ inscrit.prenom }}</td>
+                <td>{{ inscrit.mail }}</td>
+                <td>{{ inscrit.tel }}</td>
+                <td>{{ inscrit.association.name }}</td>
+                <td>{% if inscrit.voiture == true %}Oui{% else %}Non{% endif %}</td>
+                <td>{{ inscrit.commentaires }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

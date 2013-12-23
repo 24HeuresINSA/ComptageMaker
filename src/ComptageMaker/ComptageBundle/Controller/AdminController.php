@@ -32,4 +32,16 @@ class AdminController extends Controller
         }
 
     }
+
+    public function dashBoardAction()
+    {
+        $plages = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Plage')->findAll();
+        $sessions = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->findAll();
+        $comptages = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Comptage')->findAll();
+        $textblocks = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:TextBlock')->findAll();
+        $associations = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Association')->findAll();
+
+        return $this->render('ComptageMakerComptageBundle:Admin:dashboard.html.twig',
+            array('plages' => $plages, 'sessions' => $sessions, 'comptages' => $comptages, 'textblocks' => $textblocks, 'associations' => $associations));
+    }
 }

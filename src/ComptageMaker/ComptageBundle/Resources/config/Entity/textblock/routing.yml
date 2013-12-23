@@ -1,0 +1,11 @@
+textblock_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: ComptageMakerComptageBundle:TextBlock:edit }
+
+textblock_create:
+    pattern: /create
+    defaults: { _controller: ComptageMakerComptageBundle:TextBlock:create }
+
+textblock_remove:
+    pattern: /{id}/remove
+    defaults: { _controller: ComptageMakerComptageBundle:TextBlock:remove }

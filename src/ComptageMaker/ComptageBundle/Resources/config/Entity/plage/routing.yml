@@ -1,0 +1,11 @@
+plage_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: ComptageMakerComptageBundle:Plage:edit }
+
+plage_create:
+    pattern: /create
+    defaults: { _controller: ComptageMakerComptageBundle:Plage:create }
+
+plage_remove:
+    pattern: /{id}/remove
+    defaults: { _controller: ComptageMakerComptageBundle:Plage:remove }

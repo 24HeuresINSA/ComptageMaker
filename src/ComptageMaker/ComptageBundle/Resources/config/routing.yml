@@ -1,10 +1,34 @@
+comptage_maker_association:
+    resource: "@ComptageMakerComptageBundle/Resources/config/Entity/association/routing.yml"
+    prefix:   /association
+
+comptage_maker_count:
+    resource: "@ComptageMakerComptageBundle/Resources/config/Entity/count/routing.yml"
+    prefix:   /count
+
+comptage_maker_inscrit:
+    resource: "@ComptageMakerComptageBundle/Resources/config/Entity/inscrit/routing.yml"
+    prefix: /inscrit
+
+comptage_maker_plage:
+    resource: "@ComptageMakerComptageBundle/Resources/config/Entity/plage/routing.yml"
+    prefix: /plage
+
+comptage_maker_session:
+    resource: "@ComptageMakerComptageBundle/Resources/config/Entity/session/routing.yml"
+    prefix: /session
+
+comptage_maker_textblock:
+    resource: "@ComptageMakerComptageBundle/Resources/config/Entity/textblock/routing.yml"
+    prefix: /textblock
+
 comptage_maker_comptage_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: ComptageMakerComptageBundle:Default:index }
 
 comptage_home:
     pattern: /
-    defaults: { _controller: ComptageMakerComptageBundle:Text:home }
+    defaults: { _controller: ComptageMakerComptageBundle:TextBlock:home }
 
 
 comptage_faq:
@@ -25,14 +49,7 @@ comptage_list:
     pattern: /list
     defaults: { _controller: ComptageMakerComptageBundle:Comptage:listCount }
 
-comptage_change_status:
-    pattern: /count/{id}/change
-    defaults: { _controller: ComptageMakerComptageBundle:Comptage:changeStatus }
 
-comptage_edit:
-    pattern: /count/{id}/edit
-    defaults: { _controller: ComptageMakerComptageBundle:Comptage:edit }
-
-comptage_create:
-    pattern: /count/create
-    defaults: { _controller: ComptageMakerComptageBundle:Comptage:create }
+admin_dashboard:
+    pattern: /admin/dashboard
+    defaults: { _controller: ComptageMakerComptageBundle:Admin:dashBoard }

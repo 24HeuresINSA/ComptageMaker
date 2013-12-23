@@ -17,10 +17,21 @@ ComptageMaker\ComptageBundle\Entity\Session:
     lifecycleCallbacks: {  }
 
 
-    oneToOne:
+    manyToOne:
         plage:
           targetEntity: Plage
+          joinColumn:
+            name: plage_id
+            referencedColumnName: id
 
-    manyToOne:
-        inscrits:
-          targetEntity: Inscrit
+    manyToMany:
+          inscrits:
+            targetEntity: Inscrit
+            joinTable:
+              name: sessions_inscrits
+              joinColumns:
+                session_id:
+                  referencedColumnName: id
+              inverseJoinColumns:
+                inscrit_id:
+                  referencedColumnName: id

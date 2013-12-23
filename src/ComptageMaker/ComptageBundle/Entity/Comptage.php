@@ -35,6 +35,10 @@ class Comptage
      */
     private $date;
 
+    /**
+     * @var string
+     */
+    private $comment;
 
     /**
      * Get id
@@ -154,5 +158,30 @@ class Comptage
     public function getDate()
     {
         return $this->date;
+    }
+
+
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return Comptage
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }

@@ -1,0 +1,7 @@
+association_create:
+    pattern: /create
+    defaults: { _controller: ComptageMakerComptageBundle:Association:create }
+
+association_remove:
+    pattern: /{id}/remove
+    defaults: { _controller: ComptageMakerComptageBundle:Association:remove }
