@@ -12,7 +12,10 @@ class TextBlockController extends Controller
 {
     public function homeAction()
     {
-        return $this->render('ComptageMakerComptageBundle:Text:home.html.twig');
+        $textblocks = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:TextBlock')->findAll();
+        return $this->render('ComptageMakerComptageBundle:Text:home.html.twig', array(
+            'textblocks' => $textblocks,
+        ));
     }
 
     public function createAction(Request $request)
@@ -26,8 +29,8 @@ class TextBlockController extends Controller
             {
                 $this->getDoctrine()->getManager()->persist($textblock);
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
             }
-            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
         return $this->render('ComptageMakerComptageBundle:Admin:textblock.html.twig', array(
             'form' => $form->createView(),
@@ -44,8 +47,8 @@ class TextBlockController extends Controller
             if($form->isValid())
             {
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
             }
-            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
         return $this->render('ComptageMakerComptageBundle:Admin:textblock.html.twig', array(
             'form' => $form->createView(),

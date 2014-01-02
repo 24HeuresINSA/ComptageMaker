@@ -32,8 +32,8 @@ class InscritController extends Controller
                 $session->addInscrit($inscrit);
                 $this->getDoctrine()->getManager()->persist($inscrit);
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('comptage_home'));
             }
-            return $this->redirect($this->generateUrl('comptage_home'));
         }
         return $this->render('ComptageMakerComptageBundle:Comptage:inscrit.html.twig', array(
             'form' => $form->createView(),

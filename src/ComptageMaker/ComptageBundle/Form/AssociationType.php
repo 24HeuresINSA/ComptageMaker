@@ -19,6 +19,7 @@ class ComptageType extends AbstractType
                 'label' => 'Nom de l\'association',
                 'required' => true,
             ))
+            ->add('save','submit')
         ;
     }
 

@@ -21,8 +21,8 @@ class PlageController extends Controller
             {
                 $this->getDoctrine()->getManager()->persist($plage);
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
             }
-            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
         return $this->render('ComptageMakerComptageBundle:Admin:plage.html.twig', array(
             'form' => $form->createView(),
@@ -40,8 +40,8 @@ class PlageController extends Controller
             {
                 $this->getDoctrine()->getManager()->persist($plage);
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
             }
-            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
         return $this->render('ComptageMakerComptageBundle:Admin:plage.html.twig', array(
             'form' => $form->createView(),

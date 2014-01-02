@@ -35,7 +35,7 @@
                         <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':plage.debut })}}</td>
                         <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':plage.fin })}}</td>
                         <td><a href="{{ path('plage_edit',{ 'id' : plage.id}) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-                        <td><a href="{{ path('plage_remove', { 'id' : plage.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                        <td><a href="{{ path('plage_remove', { 'id' : plage.id}) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-remove"></i></a></td>
                     </tr>
                 {% endfor %}
                 <tr>
@@ -77,7 +77,7 @@
                         <td>{% if comptage.etat %} Ouvert {% else %} Fermé {% endif %}</td>
                         <td>{{ comptage.comment }}</td>
                         <td><a href="{{ path('comptage_edit',{'id' : comptage.id}) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-                        <td><a href="{{ path('comptage_remove', {'id' : comptage.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                        <td><a href="{{ path('comptage_remove', {'id' : comptage.id}) }}" onclick="return(confirm('Etes-vous sur?'));" ><i class="glyphicon glyphicon-remove"></i></a></td>
                     </tr>
 
                     <tr class="success">
@@ -97,7 +97,7 @@
                             <td>Prix : {{ session.prix }}€/h</td>
                             <td>Inscrits : {{ session.inscrits | length }}{% if session.inscrits != [] %}<a href="{{ path('session_showListInscrits',{'id' : session.id }) }}"><i class="glyphicon glyphicon-arrow-right"></i></a>{% endif %}</td>
                             <td><a href="{{ path('session_edit',{'id' : session.id}) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td><a href="{{ path('session_remove', {'id' : session.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                            <td><a href="{{ path('session_remove', {'comptageId' : comptage.id,'id' : session.id}) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-remove"></i></a></td>
                         </tr>
                     {% endfor %}
                         <tr class="success">
@@ -125,6 +125,7 @@
                 <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Titre</th>
                     <th>Texte</th>
                     <th><em>Edition</em></th>
                     <th><em>Suppression</em></th>
@@ -134,9 +135,10 @@
                 <tbody>
                     <tr>
                         <td>{{ textblock.id }}</td>
-                        <td>{{ textblock.text }}</td>
+                        <td>{{ textblock.title}}</td>
+                        <td>{{ textblock.text | raw | nl2br }}</td>
                         <td><a href="{{ path('textblock_edit', { 'id': textblock.id }) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-                        <td><a href="{{ path('textblock_remove', { 'id': textblock.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                        <td><a href="{{ path('textblock_remove', { 'id': textblock.id}) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-remove"></i></a></td>
                     </tr>
                 </tbody>
                 {% endfor %}
@@ -169,7 +171,7 @@
                     <tr>
                         <td>{{ association.id }}</td>
                         <td>{{ association.name }}</td>
-                        <td><a href="{{ path('association_remove', { 'id': association.id}) }}"><i class="glyphicon glyphicon-remove"></i></a></td>
+                        <td><a href="{{ path('association_remove', { 'id': association.id}) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-remove"></i></a></td>
                     </tr>
                 </tbody>
                 {% endfor %}

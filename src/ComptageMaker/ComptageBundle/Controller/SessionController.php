@@ -24,8 +24,8 @@ class SessionController extends Controller
                 $this->getDoctrine()->getManager()->persist($session);
                 $comptage->addSession($session);
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
             }
-            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
         return $this->render('ComptageMakerComptageBundle:Admin:session.html.twig', array(
             'form' => $form->createView(),
@@ -42,27 +42,34 @@ class SessionController extends Controller
             if($form->isValid())
             {
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
             }
-            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
         return $this->render('ComptageMakerComptageBundle:Admin:session.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
-    public function removeAction($id)
+    public function removeAction($id,$comptageId)
     {
-        $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
+        $comptage = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Comptage')->find($comptageId);
+        $session =  $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
         $em = $this->getDoctrine()->getManager();
-        foreach($session->getInscrits() as $inscrit)
+        if($comptage->getSessions()->contains($session))
         {
-            $inscrit->setAssociation(null);
-            $session->removeInscrits($inscrit);
-            $em->remove($inscrit);
+            $comptage->removeSession($session);
+            foreach($session->getInscrits() as $inscrit)
+            {
+                $inscrit->setAssociation(null);
+                $session->removeInscrits($inscrit);
+                $em->flush();
+                $em->remove($inscrit);
+            }
+            $em->remove($session);
+            $em->flush();
+            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
-        $em->remove($session);
-        $em->flush();
-        return $this->redirect($this->generateUrl('admin_dashboard'));
+        return $this->render('ComptageMakerComptageBundle:Admin:dashboard.html.twig');
     }
 
     public function showListInscritsAction($id)

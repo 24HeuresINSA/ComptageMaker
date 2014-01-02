@@ -21,8 +21,8 @@ class AssociationController extends Controller
             {
                 $this->getDoctrine()->getManager()->persist($association);
                 $this->getDoctrine()->getManager()->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
             }
-            return $this->redirect($this->generateUrl('admin_dashboard'));
         }
         return $this->render('ComptageMakerComptageBundle:Admin:association.html.twig');
     }

@@ -33,6 +33,7 @@ class ComptageType extends AbstractType
                 'required' => false,
                 'preferred_choices' => array(0),
             ))
+            ->add('save','submit')
         ;
     }
     

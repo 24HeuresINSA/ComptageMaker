@@ -10,4 +10,10 @@ ComptageMaker\ComptageBundle\Entity\TextBlock:
                 strategy: AUTO
         text:
             type: text
+            nullable: true
+
+        title:
+            type: string
+            length: 255
+
     lifecycleCallbacks: {  }

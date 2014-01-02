@@ -4,7 +4,7 @@
 {% block body %}
     <div class="page-header"><h2>Bienvenue sur le site des comptages!</h2></div>
 <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
+    {#<div class="panel panel-default">
         <div class="panel-heading">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >Sur ce site vous pouvez</a>
         </div>
@@ -78,7 +78,21 @@
                 </div>
             </div>
         </div>
+    </div>#}
+
+    {% for textblock in textblocks %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ textblock.id }}" >{{ textblock.title}}</a>
+        </div>
+        <div id="collapse{{ textblock.id }}" class="panel-collapse collapse">
+            <div class="panel-body">
+                {{ textblock.text | raw | nl2br }}
+            </div>
+        </div>
     </div>
+    {% endfor %}
+
 </div>
 
 

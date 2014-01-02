@@ -19,6 +19,11 @@ class TextBlock
      */
     private $text;
 
+    /**
+     * @var string
+     */
+    private $title;
+
 
     /**
      * Get id
@@ -51,5 +56,28 @@ class TextBlock
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return TextBlock
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
