@@ -4,6 +4,7 @@ namespace ComptageMaker\ComptageBundle\Controller;
 
 use ComptageMaker\ComptageBundle\Form\PlageType;
 use ComptageMaker\ComptageBundle\Entity\Plage;
+use ComptageMaker\ComptageBundle\Entity\Comptage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +39,6 @@ class PlageController extends Controller
         {
             if($form->isValid())
             {
-                $this->getDoctrine()->getManager()->persist($plage);
                 $this->getDoctrine()->getManager()->flush();
                 return $this->redirect($this->generateUrl('admin_dashboard'));
             }
@@ -51,8 +51,18 @@ class PlageController extends Controller
     public function removeAction($id)
     {
         $plage = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Plage')->find($id);
-        $this->getDoctrine()->getManager()->remove($plage);
-        $this->getDoctrine()->getManager()->flush();
+        $sessions = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->findAll();
+        $em = $this->getDoctrine()->getManager();
+        foreach($sessions as $session)
+        {
+            if($session->getPlage == $plage)
+            {
+                $session->setPlage(null);
+            }
+        }
+        $em->flush();
+        $em->remove($plage);
+        $em->flush();
         return $this->redirect($this->generateUrl('admin_dashboard'));
     }
 }
