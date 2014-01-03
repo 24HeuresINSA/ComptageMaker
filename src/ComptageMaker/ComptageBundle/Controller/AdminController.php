@@ -44,4 +44,9 @@ class AdminController extends Controller
         return $this->render('ComptageMakerComptageBundle:Admin:dashboard.html.twig',
             array('plages' => $plages, 'sessions' => $sessions, 'comptages' => $comptages, 'textblocks' => $textblocks, 'associations' => $associations));
     }
+
+    public function guideAction()
+    {
+        return $this->render('ComptageMakerComptageBundle:Admin:guide.html.twig');
+    }
 }

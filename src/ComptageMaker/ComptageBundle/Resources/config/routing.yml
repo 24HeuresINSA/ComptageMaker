@@ -53,3 +53,7 @@ comptage_list:
 admin_dashboard:
     pattern: /admin/dashboard
     defaults: { _controller: ComptageMakerComptageBundle:Admin:dashBoard }
+
+admin_guide:
+    pattern: /admin/guide
+    defaults: { _controller: ComptageMakerComptageBundle:Admin:guide }
