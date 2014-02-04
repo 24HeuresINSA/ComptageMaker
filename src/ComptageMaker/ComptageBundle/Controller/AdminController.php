@@ -95,7 +95,7 @@ class AdminController extends Controller
     public function sessionAutoMailAction($id)
     {
         $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
-        $array = [];
+        $array = array();
         foreach($session->getInscrits() as $inscrit)
         {
             $array[] = $inscrit->getMail();
