@@ -31,7 +31,6 @@ class PlageType extends AbstractType
                 'required' => true,
                 'label' => 'Fin de la plage',
             ))
-            ->add('save','submit')
         ;
     }
     

@@ -21,6 +21,7 @@ class SessionController extends Controller
             if($form->isValid())
             {
                 $comptage = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Comptage')->find($comptageId);
+                $session->setComptage($comptage);
                 $this->getDoctrine()->getManager()->persist($session);
                 $comptage->addSession($session);
                 $this->getDoctrine()->getManager()->flush();
@@ -29,6 +30,7 @@ class SessionController extends Controller
         }
         return $this->render('ComptageMakerComptageBundle:Admin:session.html.twig', array(
             'form' => $form->createView(),
+            'comptageId' => $comptageId,
         ));
     }
 
@@ -50,11 +52,11 @@ class SessionController extends Controller
         ));
     }
 
-    public function removeAction($id,$comptageId)
+    public function removeAction($id)
     {
-        $comptage = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Comptage')->find($comptageId);
         $session =  $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
         $em = $this->getDoctrine()->getManager();
+        $comptage= $session->getComptage();
         if($comptage->getSessions()->contains($session))
         {
             $comptage->removeSession($session);
@@ -76,7 +78,7 @@ class SessionController extends Controller
     {
         $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
         return $this->render('ComptageMakerComptageBundle:Admin:listInscrits.html.twig', array(
-            'inscrits' => $session->getInscrits(),
+            'inscrits' => $session->getInscrits(), 'sessionId' =>$session->getId(),
         ));
     }
 }

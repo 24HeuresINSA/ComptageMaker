@@ -23,7 +23,10 @@ class TextBlockType extends AbstractType
                 'required' => true,
                 'label' => 'Texte à afficher (tags html supportés)',
             ))
-            ->add('save','submit')
+            ->add('order','number', array(
+                'required' => false,
+                'label' => 'Ordre sur la page',
+            ))
         ;
     }
     

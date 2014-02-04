@@ -88,6 +88,7 @@
                         <th>Inscrits</th>
                         <th><em>Edition</em></th>
                         <th><em>Suppression</em></th>
+                        <th>Mail</th>
                     </tr>
                     {% for session in comptage.sessions %}
                         <tr class="success">
@@ -97,7 +98,8 @@
                             <td>Prix : {{ session.prix }}€/h</td>
                             <td>Inscrits : {{ session.inscrits | length }}{% if session.inscrits != [] %}<a href="{{ path('session_showListInscrits',{'id' : session.id }) }}"><i class="glyphicon glyphicon-arrow-right"></i></a>{% endif %}</td>
                             <td><a href="{{ path('session_edit',{'id' : session.id}) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td><a href="{{ path('session_remove', {'comptageId' : comptage.id,'id' : session.id}) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-remove"></i></a></td>
+                            <td><a href="{{ path('session_remove', {'id' : session.id}) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-remove"></i></a></td>
+                            <td><a href="{{ path('admin_mail_session', {'id' : session.id }) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-envelope"></i></a></td>
                         </tr>
                     {% endfor %}
                         <tr class="success">
@@ -127,6 +129,7 @@
                     <th>Id</th>
                     <th>Titre</th>
                     <th>Texte</th>
+                    <th>Ordre</th>
                     <th><em>Edition</em></th>
                     <th><em>Suppression</em></th>
                 </tr>
@@ -137,6 +140,7 @@
                         <td>{{ textblock.id }}</td>
                         <td>{{ textblock.title}}</td>
                         <td>{{ textblock.text | raw | nl2br }}</td>
+                        <td>{{ textblock.order }}</td>
                         <td><a href="{{ path('textblock_edit', { 'id': textblock.id }) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
                         <td><a href="{{ path('textblock_remove', { 'id': textblock.id}) }}" onclick="return(confirm('Etes-vous sur?'));"><i class="glyphicon glyphicon-remove"></i></a></td>
                     </tr>

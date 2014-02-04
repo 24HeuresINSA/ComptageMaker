@@ -37,7 +37,6 @@ class SessionType extends AbstractType
                 'multiple' => false,
                 'label' => 'Sélection des plages'
             ))
-            ->add('save','submit')
         ;
     }
     

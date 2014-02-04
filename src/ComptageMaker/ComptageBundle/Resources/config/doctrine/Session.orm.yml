@@ -24,6 +24,13 @@ ComptageMaker\ComptageBundle\Entity\Session:
             name: plage_id
             referencedColumnName: id
 
+        comptage:
+          targetEntity: Comptage
+          inversedBy: sessions
+          joinColumn:
+            name: comptage_id
+            referencedColumnName: id
+
     manyToMany:
           inscrits:
             targetEntity: Inscrit

@@ -15,5 +15,7 @@ ComptageMaker\ComptageBundle\Entity\TextBlock:
         title:
             type: string
             length: 255
+        order:
+            type: integer
 
     lifecycleCallbacks: {  }

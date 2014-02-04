@@ -41,6 +41,10 @@ class Session
      */
     private $plage;
 
+    /**
+     * @var \ComptageMaker\ComptageBundle\Entity\Comptage
+     */
+    private $comptage;
 
     /**
      * Get id
@@ -188,5 +192,28 @@ class Session
     public function getPlage()
     {
         return $this->plage;
+    }
+
+    /**
+     * Set comptage
+     *
+     * @param \ComptageMaker\ComptageBundle\Entity\Comptage $comptage
+     * @return Session
+     */
+    public function setComptage(\ComptageMaker\ComptageBundle\Entity\Comptage $comptage = null)
+    {
+        $this->comptage = $comptage;
+    
+        return $this;
+    }
+
+    /**
+     * Get comptage
+     *
+     * @return \ComptageMaker\ComptageBundle\Entity\Comptage 
+     */
+    public function getComptage()
+    {
+        return $this->comptage;
     }
 }

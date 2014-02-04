@@ -16,37 +16,65 @@ class InscritController extends Controller
     {
         $inscrit = new Inscrit();
         $form = $this->createForm(new InscritType(),$inscrit);
+        $form->handleRequest($request);
+        $errorList = null;
         if($request->getMethod() == 'POST')
         {
-            $form->bind($request);
             if($form->isValid())
             {
                 $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($sessionId);
-                if($form->get('association')->getData() == null)
+                if($form->get('association')->getData() == null && $form->get('nassociation')->getData() != null)
                 {
                     $association = new Association();
                     $association->setName($form->get('nassociation')->getData());
                     $this->getDoctrine()->getManager()->persist($association);
                     $inscrit->setAssociation($association);
                 }
+                elseif($form->get('association')->getData() == null && $form->get('nassociation')->getData() == null)
+                {
+                    return $this->redirect($this->generateUrl('inscrit_create'));
+                }
                 $session->addInscrit($inscrit);
                 $this->getDoctrine()->getManager()->persist($inscrit);
                 $this->getDoctrine()->getManager()->flush();
+
+                //mail à comptages
+                $message = \Swift_Message::newInstance();
+                $message->setSubject('Confirmation d\'inscription à comptages.24heures.org')
+                    ->setTo('comptages@24heures.org')
+                    ->setBody(
+                    $this->renderView(
+                        'ComptageMakerComptageBundle:Admin:newUser.html.twig',
+                        array('inscrit' => $inscrit, 'session' => $session)
+                    ),'text/html'
+                    );
+                $this->get('mailer')->send($message);
                 return $this->redirect($this->generateUrl('comptage_home'));
             }
         }
         return $this->render('ComptageMakerComptageBundle:Comptage:inscrit.html.twig', array(
+            'sessionId' => $sessionId,
             'form' => $form->createView(),
+            'errorList' => $errorList
         ));
     }
 
-    public function removeAction($id)
+    public function removeAction($id,$sessionId)
     {
-        $inscrit = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Inscrit')->find($id);
-        $inscrit->setAssociation(null);
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($inscrit);
-        $em->flush();
-        return $this->redirect($this->generateUrl('admin_dashboard'));
+        $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($sessionId);
+        foreach($session->getInscrits() as $inscrit)
+        {
+            if($inscrit->getId() == $id)
+            {
+                $session->removeInscrit($inscrit);
+                $inscrit->setAssociation(null);
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+                $em->remove($inscrit);
+                $em->flush();
+                return $this->redirect($this->generateUrl('admin_dashboard'));
+            }
+        }
+        throw $this->createNotFoundException('Inscrit inexistant');
     }
 }

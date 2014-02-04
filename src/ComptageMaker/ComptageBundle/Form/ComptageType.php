@@ -30,10 +30,13 @@ class ComptageType extends AbstractType
             ->add('etat','choice',array(
                 'choices' => array(0 => 'Fermé', 1 => 'Ouvert'),
                 'label' => 'Etat initial du comptage',
-                'required' => false,
-                'preferred_choices' => array(0),
+                'required' => true,
+                'preferred_choices' => array(0 => 'Fermé'),
             ))
-            ->add('save','submit')
+            ->add('comment','textarea',array(
+                'label' => 'Commentaires',
+                'required' => false,
+            ))
         ;
     }
     

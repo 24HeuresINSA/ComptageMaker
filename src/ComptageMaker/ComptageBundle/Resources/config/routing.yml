@@ -57,3 +57,11 @@ admin_dashboard:
 admin_guide:
     pattern: /admin/guide
     defaults: { _controller: ComptageMakerComptageBundle:Admin:guide }
+
+admin_mail_inscrit:
+    pattern: /admin/mail/{inscritId}
+    defaults: { _controller: ComptageMakerComptageBundle:Admin:mail }
+
+admin_mail_session:
+    pattern: /admin/mailAll/{id}
+    defaults: { _controller: ComptageMakerComptageBundle:Admin:sessionMail }

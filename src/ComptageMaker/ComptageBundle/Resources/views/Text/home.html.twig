@@ -81,6 +81,19 @@
     </div>#}
 
     {% for textblock in textblocks %}
+        {% if loop.first %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ textblock.id }}" >{{ textblock.title}}</a>
+        </div>
+        <div id="collapse{{ textblock.id }}" class="panel-collapse collapse in">
+            <div class="panel-body">
+                {{ textblock.text | raw | nl2br }}
+            </div>
+        </div>
+    </div>
+        {% else %}
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ textblock.id }}" >{{ textblock.title}}</a>
@@ -91,6 +104,7 @@
             </div>
         </div>
     </div>
+        {% endif %}
     {% endfor %}
 
 </div>

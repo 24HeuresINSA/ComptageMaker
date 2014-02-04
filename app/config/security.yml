@@ -31,8 +31,12 @@ security:
                     admin: { password: d033e22ae348aeb5660fc2140aec35850c4da997, roles: 'ROLE_ADMIN' }
                 
     access_control:
-        - { path: ^/count, roles: ROLE_ADMIN }
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/list, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscrit, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscrit/admin, roles: ROLE_ADMIN }
+        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_ADMIN }
 
     encoders:
         Symfony\Component\Security\Core\User\User:

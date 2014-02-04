@@ -7,7 +7,7 @@ session_create:
     defaults: { _controller: ComptageMakerComptageBundle:Session:create }
 
 session_remove:
-    pattern: /{comptageId}/remove/{id}
+    pattern: /remove/{id}
     defaults: { _controller: ComptageMakerComptageBundle:Session:remove }
 
 session_showListInscrits:

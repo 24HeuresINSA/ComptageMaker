@@ -7,5 +7,35 @@
 {% endblock %}
 
 {% block body %}
-    {{form(form)}}
+    <form method="post" {{ form_enctype(form) }} class="well" onsubmit="return checkDuo()">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>{{ form_label(form.entries) }}</th>
+                    <td>{{ form_widget(form.entries) }}</td>
+                    <td>{{ form_errors(form.entries) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form_label(form.type) }}</th>
+                    <td>{{ form_widget(form.type) }}</td>
+                    <td>{{ form_errors(form.type) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form_label(form.prix) }}</th>
+                    <td>{{ form_widget(form.prix) }}</td>
+                    <td>{{ form_errors(form.prix) }}</td>
+                </tr>
+                <tr>
+                    <th>{{ form_label(form.plage) }}</th>
+                    <td>{{ form_widget(form.plage) }}</td>
+                    <td>{{ form_errors(form.plage) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_rest(form) }}</td>
+                    <td><input type="submit" class="btn btn-primary" /></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
 {% endblock %}

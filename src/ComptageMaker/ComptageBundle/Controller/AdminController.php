@@ -49,4 +49,66 @@ class AdminController extends Controller
     {
         return $this->render('ComptageMakerComptageBundle:Admin:guide.html.twig');
     }
+
+    public function mailAction($inscritId)
+    {
+        $inscrit = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Inscrit')->find($inscritId);
+        $message = \Swift_Message::newInstance();
+        $message->setSubject('Confirmation d\'inscription à comptages.24heures.org')
+            ->setTo($inscrit->getMail())
+            ->setBody(
+                $this->renderView(
+                    'ComptageMakerComptageBundle:Admin:confirm.html.twig',
+                    array('inscrit' => $inscrit, 'session' => $session)
+                ),'text/html'
+            );
+        $this->get('mailer')->send($message);
+        return $this->redirect($this->generateUrl('admin_dashboard'));
+    }
+
+    public function sessionMailAction($id)
+    {
+        $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
+        /*$array = [];
+        foreach($session->getInscrits() as $inscrit)
+        {
+            $array[] = $inscrit->getMail();
+        }
+        $message = \Swift_Message::newInstance();
+        $message->setSubject('Confirmation d\'inscription à comptages.24heures.org')
+            ->setTo($array)
+            ->setBody(
+                $this->renderView(
+                    'ComptageMakerComptageBundle:Admin:confirm.html.twig',
+                    array('inscrit' => $inscrit, 'session' => $session)
+                ),'text/html'
+            );
+        $this->get('mailer')->send($message);*/
+        $string = '';
+        foreach($session->getInscrits() as $inscrit)
+        {
+            $string = $string.$inscrit->getMail().';';
+        }
+        return $this->redirect('https://mail.google.com/mail/?view=cm&fs=1&tf=1&source=mailto&to='.$string);
+    }
+
+    public function sessionAutoMailAction($id)
+    {
+        $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
+        $array = [];
+        foreach($session->getInscrits() as $inscrit)
+        {
+            $array[] = $inscrit->getMail();
+        }
+        $message = \Swift_Message::newInstance();
+        $message->setSubject('Confirmation d\'inscription à comptages.24heures.org')
+            ->setTo($array)
+            ->setBody(
+                $this->renderView(
+                    'ComptageMakerComptageBundle:Admin:confirm.html.twig',
+                    array('inscrit' => $inscrit, 'session' => $session)
+                ),'text/html'
+            );
+        $this->get('mailer')->send($message);
+    }
 }

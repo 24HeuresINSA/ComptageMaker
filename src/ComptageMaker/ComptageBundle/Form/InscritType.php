@@ -37,7 +37,7 @@ class InscritType extends AbstractType
                 'multiple' => false,
                 'label' => 'Association',
                 'required' => false,
-            ))
+                ))
             ->add('nassociation','text',array(
                 'label' => 'Autre',
                 'required' => false,
@@ -51,7 +51,6 @@ class InscritType extends AbstractType
                 'label' => 'Commentaires',
                 'required' => false,
             ))
-            ->add('save','submit')
         ;
     }
     

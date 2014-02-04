@@ -7,5 +7,66 @@
 {% endblock %}
 
 {% block body %}
-{{form(form)}}
+<form method="post" {{ form_enctype(form) }} class="well" onsubmit="return checkDuo()">
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>{{ form_label(form.nom) }}</th>
+                <td>{{ form_widget(form.nom) }}</td>
+                <td>{{ form_errors(form.nom) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.prenom) }}</th>
+                <td>{{ form_widget(form.prenom) }}</td>
+                <td>{{ form_errors(form.prenom) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.mail) }}</th>
+                <td>{{ form_widget(form.mail) }}</td>
+                <td>{{ form_errors(form.mail) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.tel) }}</th>
+                <td>{{ form_widget(form.tel) }}</td>
+                <td>{{ form_errors(form.tel) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.association) }}</th>
+                <td>{{ form_widget(form.association) }}</td>
+                <td>{{ form_errors(form.association) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.nassociation) }}</th>
+                <td>{{ form_widget(form.nassociation) }}</td>
+                <td>{{ form_errors(form.nassociation) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.voiture) }}</th>
+                <td>{{ form_widget(form.voiture) }}</td>
+                <td>{{ form_errors(form.voiture) }}</td>
+            </tr>
+            <tr>
+                <th>{{ form_label(form.commentaires) }}</th>
+                <td>{{ form_widget(form.commentaires) }}</td>
+                <td>{{ form_errors(form.commentaires) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_rest(form) }}</td>
+                <td><input type="submit" class="btn btn-primary" /></td>
+            </tr>
+        </table>
+    </div>
+</form>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+            function checkDuo()
+            {
+                if( !$('#comptagemaker_comptagebundle_inscrit_association').val() && !$('#comptagemaker_comptagebundle_inscrit_nassociation').val() )
+                {
+                    alert("Il vous faut impérativement indiquer votre association!");
+                    return false;
+                }
+            }
+    </script>
 {% endblock %}

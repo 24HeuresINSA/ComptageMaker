@@ -24,6 +24,10 @@ class TextBlock
      */
     private $title;
 
+    /**
+     * @var integer
+     */
+    private $order;
 
     /**
      * Get id
@@ -79,5 +83,28 @@ class TextBlock
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set order
+     *
+     * @param integer $order
+     * @return TextBlock
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+    
+        return $this;
+    }
+
+    /**
+     * Get order
+     *
+     * @return integer 
+     */
+    public function getOrder()
+    {
+        return $this->order;
     }
 }
