@@ -42,6 +42,7 @@ class InscritController extends Controller
                 $message = \Swift_Message::newInstance();
                 $message->setSubject('Confirmation d\'inscription à comptages.24heures.org')
                     ->setTo('comptages@24heures.org')
+                    ->setFrom($inscrit->getMail())
                     ->setBody(
                     $this->renderView(
                         'ComptageMakerComptageBundle:Admin:newUser.html.twig',
