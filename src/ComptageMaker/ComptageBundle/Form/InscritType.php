@@ -39,7 +39,7 @@ class InscritType extends AbstractType
                 'required' => false,
                 ))
             ->add('nassociation','text',array(
-                'label' => 'Autre',
+                'label' => 'Autre association',
                 'required' => false,
                 'mapped' => false,
             ))
