@@ -27,7 +27,7 @@ class TextBlock
     /**
      * @var integer
      */
-    private $order;
+    private $blockOrder;
 
     /**
      * Get id
@@ -86,25 +86,25 @@ class TextBlock
     }
 
     /**
-     * Set order
+     * Set blockOrder
      *
-     * @param integer $order
+     * @param integer $blockOrder
      * @return TextBlock
      */
-    public function setOrder($order)
+    public function setOrder($blockOrder)
     {
-        $this->order = $order;
+        $this->blockOrder = $blockOrder;
     
         return $this;
     }
 
     /**
-     * Get order
+     * Get blockOrder
      *
      * @return integer 
      */
     public function getOrder()
     {
-        return $this->order;
+        return $this->blockOrder;
     }
 }
