@@ -35,7 +35,7 @@ class SessionType extends AbstractType
                 'property' => 'nom',
                 'required' => true,
                 'multiple' => false,
-                'label' => 'Sélection des plages'
+                'label' => 'Sélection de la plage'
             ))
         ;
     }

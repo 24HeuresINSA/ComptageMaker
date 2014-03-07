@@ -24,12 +24,15 @@ class AssociationController extends Controller
                 return $this->redirect($this->generateUrl('admin_dashboard'));
             }
         }
-        return $this->render('ComptageMakerComptageBundle:Admin:association.html.twig');
+        return $this->render('ComptageMakerComptageBundle:Admin:association.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     public function removeAction($id)
     {
         $association = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Association')->find($id);
+        $this->getDoctrine()->getManager()->remove($association);
         $this->getDoctrine()->getManager()->flush();
         return $this->redirect($this->generateUrl('admin_dashboard'));
     }
