@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ComptageType extends AbstractType
+class AssociationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -19,7 +19,6 @@ class ComptageType extends AbstractType
                 'label' => 'Nom de l\'association',
                 'required' => true,
             ))
-            ->add('save','submit')
         ;
     }
 
