@@ -1,0 +1,25 @@
+Bonjour Comptages,<br/>
+
+<h3>Toutes les sessions du Comptage: {{ include(
+    'ComptageMakerComptageBundle:Comptage:day.html.twig', { 'date': count.date })}}</h3>
+<h3>Inscrit(Prénom,Nom): {{ inscrit.prenom }} {{inscrit.nom }}</h3>
+<h3>Association: {{ inscrit.association.name }}</h3>
+<h3>Tél: {{ inscrit.tel }}</h3>
+<h3>Mail: {{ inscrit.mail }}</h3>
+<h3><a href="http://comptagemaker.24heures.org{{ path('admin_dashboard') }}">Lien du dashboard</a></h3>
+<h3>Nombre d'inscrits : </h3>
+<ul>
+    {% for session in count.sessions %}
+    <li>session {{ session.id }}, {{ session.inscrits | length }} inscrits, {{ session.entries }} places prévues</li>
+    {% endfor %}
+</ul>
+<br/>
+Nous lui avons rappelé que le briefing se fera le {{ include(
+'ComptageMakerComptageBundle:Comptage:date.html.twig', { 'date' : count.briefing })}}
+<br/>
+En cas de problème, ou s'il souhaite obtenir de plus amples informations, il vous recontactera.
+<br/>
+<br/>
+Salutations,<br/>
+Le site des comptages,<br/>
+24 Heures de l'INSA

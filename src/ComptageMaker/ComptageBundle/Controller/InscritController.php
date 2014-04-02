@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class InscritController extends Controller
 {
-    public function createAction(Request $request, $sessionId)
+    public function createAction(Request $request, $sessionId, $countId)
     {
         $inscrit = new Inscrit();
         $form = $this->createForm(new InscritType(),$inscrit);
@@ -22,7 +22,6 @@ class InscritController extends Controller
         {
             if($form->isValid())
             {
-                $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($sessionId);
                 if($form->get('association')->getData() == null && $form->get('nassociation')->getData() != null)
                 {
                     $association = new Association();
@@ -34,27 +33,54 @@ class InscritController extends Controller
                 {
                     return $this->redirect($this->generateUrl('inscrit_create'));
                 }
-                $session->addInscrit($inscrit);
-                $this->getDoctrine()->getManager()->persist($inscrit);
-                $this->getDoctrine()->getManager()->flush();
 
                 //mail à comptages
                 $message = \Swift_Message::newInstance();
                 $message->setSubject('Confirmation d\'inscription à comptages.24heures.org')
                     ->setTo('comptages@24heures.org')
-                    ->setFrom($inscrit->getMail())
-                    ->setBody(
+                    ->setFrom($inscrit->getMail());
+
+                //si on s'inscrit à une seule session
+                if(is_numeric($sessionId))
+                {
+                    $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($sessionId);
+                    $session->addInscrit($inscrit);
+                    $message->setBody(
                     $this->renderView(
                         'ComptageMakerComptageBundle:Admin:newUser.html.twig',
                         array('inscrit' => $inscrit, 'session' => $session)
                     ),'text/html'
-                    );
+                );
+                }
+
+                //si on s'inscrit à toutes les sessions du comptage
+                else
+                {
+                    $count = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Comptage')->find($countId);
+                    foreach($count->getSessions() as $session)
+                    {
+                        $session->addInscrit($inscrit);
+                    }
+                    $message->setBody(
+                    $this->renderView(
+                        'ComptageMakerComptageBundle:Admin:newUserCount.html.twig',
+                        array('inscrit' => $inscrit, 'count' => $count)
+                    ),'text/html'
+                );
+                }
+
+                $this->getDoctrine()->getManager()->persist($inscrit);
+                $this->getDoctrine()->getManager()->flush();
+
+
+
                 $this->get('mailer')->send($message);
                 return $this->redirect($this->generateUrl('comptage_home'));
             }
         }
         return $this->render('ComptageMakerComptageBundle:Comptage:inscrit.html.twig', array(
             'sessionId' => $sessionId,
+            'countId' => $countId,
             'form' => $form->createView(),
             'errorList' => $errorList
         ));

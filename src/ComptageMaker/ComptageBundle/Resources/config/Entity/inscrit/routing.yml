@@ -1,6 +1,17 @@
 inscrit_create:
-    pattern: /{sessionId}/create
+    pattern: /{countId}/{sessionId}/create
     defaults: { _controller: ComptageMakerComptageBundle:Inscrit:create }
+    requirements:
+      sessionId: \d+
+
+inscrit_all_create:
+    pattern: /{countId}/{sessionId}/create
+    defaults:
+      { _controller: ComptageMakerComptageBundle:Inscrit:create }
+    requirements:
+      countId: \d+
+      sessionId: all
+
 
 inscrit_remove:
     pattern: /admin/{sessionId}/{id}/remove

@@ -7,8 +7,8 @@ Bonjour Comptages,<br/>
 <h3>Tél: {{ inscrit.tel }}</h3>
 <h3>Mail: {{ inscrit.mail }}</h3>
 <h3><a href="http://comptagemaker.24heures.org{{ path('session_showListInscrits', {'id': session.id }) }}">Lien du comptage</a></h3>
-<h3>Nombre d'inscrits: {{ session.inscrits | length }}</h3>
-<h3>Nombre de places prévues: {{ session.entries }}</h3>
+<h3>Nombre d'inscrits à la session: {{ session.inscrits | length }}</h3>
+<h3>Nombre de places prévues pour la session: {{ session.entries }}</h3>
 <br/>
 Nous lui avons rappelé que le briefing se fera le {{ include(
 'ComptageMakerComptageBundle:Comptage:date.html.twig', { 'date' : session.comptage.briefing })}}

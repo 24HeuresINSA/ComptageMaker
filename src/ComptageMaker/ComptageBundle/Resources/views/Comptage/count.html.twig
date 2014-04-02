@@ -14,6 +14,9 @@
             {% if count.comment != null %}<li><strong>Commentaire:</strong></li>{% endif %}
         </ul>
         <p>{{ count.comment }}</p>
+        {% if not is_granted('ROLE_ADMIN') %}
+            {% if count.sessions | length > 1 %}<a class="btn btn-primary" href="{{ path('inscrit_all_create',{ 'countId': count.id, 'sessionId': 'all' }) }}">S'inscrire à toutes les sessions</a>{% endif %}
+        {% endif %}
     </div>
     <div class="table-responsive">
         <table class="table">
@@ -35,7 +38,7 @@
                     <td>{{ session.entries }}</td>
                     <td>{{ session.prix }}€</td>
                     {% if not is_granted('ROLE_ADMIN') %}
-                        <td><a class="btn btn-primary" href="{{ path('inscrit_create',{ 'sessionId': session.id }) }}">S'inscrire</a></td>
+                        <td><a class="btn btn-primary" href="{{ path('inscrit_create',{ 'countId': count.id , 'sessionId': session.id }) }}">S'inscrire</a></td>
                     {% endif %}
                 </tr>
             {% endfor %}
