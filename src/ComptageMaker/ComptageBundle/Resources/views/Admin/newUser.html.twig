@@ -1,17 +1,20 @@
 Bonjour Comptages,<br/>
 
-<h3>Session: {{ include(
-    'ComptageMakerComptageBundle:Comptage:day.html.twig', { 'date': session.comptage.date })}}, {{ session.plage.nom }}</h3>
+<h3>Comptage: {{ include(
+    'ComptageMakerComptageBundle:Comptage:day.html.twig', { 'date': count.date })}}</h3>
 <h3>Inscrit(Prénom,Nom): {{ inscrit.prenom }} {{inscrit.nom }}</h3>
 <h3>Association: {{ inscrit.association.name }}</h3>
 <h3>Tél: {{ inscrit.tel }}</h3>
 <h3>Mail: {{ inscrit.mail }}</h3>
-<h3><a href="http://comptagemaker.24heures.org{{ path('session_showListInscrits', {'id': session.id }) }}">Lien du comptage</a></h3>
+<h3><a href="{{ url('admin_dashboard') }}">Lien du dashboard</a></h3>
+{% for session in sessions %}
+<h3>Session : {{ session.plage.nom }}</h3>
 <h3>Nombre d'inscrits: {{ session.inscrits | length }}</h3>
 <h3>Nombre de places prévues: {{ session.entries }}</h3>
 <br/>
+{% endfor %}
 Nous lui avons rappelé que le briefing se fera le {{ include(
-'ComptageMakerComptageBundle:Comptage:date.html.twig', { 'date' : session.comptage.briefing })}}
+'ComptageMakerComptageBundle:Comptage:date.html.twig', { 'date' : count.briefing })}}
 <br/>
 En cas de problème, ou s'il souhaite obtenir de plus amples informations, il vous recontactera.
 <br/>

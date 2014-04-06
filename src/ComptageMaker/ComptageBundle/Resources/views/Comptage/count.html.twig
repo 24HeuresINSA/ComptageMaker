@@ -1,5 +1,5 @@
 {% if count.etat == true or is_granted('ROLE_ADMIN') %}
-<div class="panel {% if count.etat == true %} panel-success{% else %} panel-danger {% endif %}">
+<div class="panel {% if count.etat == true %} panel-success{% else %} panel-danger {% endif %}" ng-controller="countCtrl" ng-init="count.id = {{ count.id }}">
     <div class="panel-heading">
         <h3>Comptage du {{ include('ComptageMakerComptageBundle:Comptage:day.html.twig', { 'date': count.date })}}</h3>
         {% if is_granted('ROLE_ADMIN') %}
@@ -10,6 +10,9 @@
         <ul>
             <li>Briefing le {{ include(
                                     'ComptageMakerComptageBundle:Comptage:date.html.twig', { 'date' : count.briefing })}}
+            </li>
+            <li>
+                <strong>Sélectionnez vos sessions en cliquant sur les lignes</strong>
             </li>
             {% if count.comment != null %}<li><strong>Commentaire:</strong></li>{% endif %}
         </ul>
@@ -27,7 +30,7 @@
                 <th></th>
             </tr>
             {% for session in count.sessions %}
-                <tr>
+                <tr ng-controller="sessionCtrl" ng-init="session.id = {{ session.id }}"  {% if not is_granted('ROLE_ADMIN') %}data-my-row{% endif %}>
                     <td><strong>{{ session.plage.nom }}</strong></td>
                     <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':session.plage.debut })}}</td>
                     <td>{{ include('ComptageMakerComptageBundle:Comptage:daytime.html.twig', { 'date':session.plage.fin })}}</td>
@@ -35,10 +38,14 @@
                     <td>{{ session.entries }}</td>
                     <td>{{ session.prix }}€</td>
                     {% if not is_granted('ROLE_ADMIN') %}
-                        <td><a class="btn btn-primary" href="{{ path('inscrit_create',{ 'sessionId': session.id }) }}">S'inscrire</a></td>
+                        <td><input type="checkbox" ng-model="session.checked" ng-checked="session.checked"  data-my-checkbox ng-show="false"/></td>
+                        {# <td><a class="btn btn-primary">S'inscrire</a></td> #}
                     {% endif %}
                 </tr>
             {% endfor %}
+            <tr ng-if="count.sessions.length > 0">
+                <td><a class="btn btn-primary" ng-click="register()">S'inscrire</a></td>
+            </tr>
         </table>
     </div>
 </div>

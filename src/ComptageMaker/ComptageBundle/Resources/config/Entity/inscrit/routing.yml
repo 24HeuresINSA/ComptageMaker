@@ -1,6 +1,8 @@
 inscrit_create:
     pattern: /{sessionId}/create
     defaults: { _controller: ComptageMakerComptageBundle:Inscrit:create }
+    options:
+      expose: true
 
 inscrit_remove:
     pattern: /admin/{sessionId}/{id}/remove

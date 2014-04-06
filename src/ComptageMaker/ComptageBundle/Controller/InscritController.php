@@ -22,7 +22,7 @@ class InscritController extends Controller
         {
             if($form->isValid())
             {
-                $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($sessionId);
+                $arraySessionId = explode('-',$sessionId);
                 if($form->get('association')->getData() == null && $form->get('nassociation')->getData() != null)
                 {
                     $association = new Association();
@@ -34,7 +34,16 @@ class InscritController extends Controller
                 {
                     return $this->redirect($this->generateUrl('inscrit_create'));
                 }
-                $session->addInscrit($inscrit);
+
+                //sessions
+                $sessions = [];
+                foreach($arraySessionId as $id)
+                {
+                    $session = $this->getDoctrine()->getRepository('ComptageMakerComptageBundle:Session')->find($id);
+                    $session->addInscrit($inscrit);
+                    $sessions[] = $session;
+                }
+                $count = $sessions[0]->getComptage();
                 $this->getDoctrine()->getManager()->persist($inscrit);
                 $this->getDoctrine()->getManager()->flush();
 
@@ -46,7 +55,7 @@ class InscritController extends Controller
                     ->setBody(
                     $this->renderView(
                         'ComptageMakerComptageBundle:Admin:newUser.html.twig',
-                        array('inscrit' => $inscrit, 'session' => $session)
+                        array('inscrit' => $inscrit, 'sessions' => $sessions, 'count' => $count)
                     ),'text/html'
                     );
                 $this->get('mailer')->send($message);
