@@ -36,10 +36,11 @@ class ComptageType extends AbstractType
             ->add('comment','textarea',array(
                 'label' => 'Commentaires',
                 'required' => false,
+                'attr' => array('cols' => '40','rows' => '5'),
             ))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
