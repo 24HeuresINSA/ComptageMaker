@@ -3,12 +3,12 @@
 
 {% block body %}
 
-
-{% for count in counts  %}
-    {{ include(
+<div ng-app="comptagemaker">
+    {% for count in counts  %}
+        {{ include(
         'ComptageMakerComptageBundle:Comptage:count.html.twig',
-    { 'count': count }
-    ) }}
-{% endfor %}
-
+        { 'count': count }
+        ) }}
+    {% endfor %}
+</div>
 {% endblock %}

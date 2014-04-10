@@ -50,6 +50,7 @@ class InscritType extends AbstractType
            ->add('commentaires','textarea', array(
                 'label' => 'Commentaires',
                 'required' => false,
+                'attr' => array('cols' => '40','rows' => '5'),
             ))
         ;
     }

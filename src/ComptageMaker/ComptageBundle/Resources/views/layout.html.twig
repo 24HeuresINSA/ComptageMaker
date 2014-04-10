@@ -18,6 +18,17 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/comptagemakercomptage/js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/comptagemakercomptage/js/controllers.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/comptagemakercomptage/js/services.js') }}"></script>
+
+    <!--Include of FOSjsRouting to share symfony routes with angular -->
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+
+
 </head>
 
 <body>

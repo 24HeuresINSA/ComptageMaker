@@ -22,6 +22,7 @@ class TextBlockType extends AbstractType
             ->add('text','textarea', array(
                 'required' => true,
                 'label' => 'Texte à afficher (tags html supportés)',
+                'attr' => array('cols' => '40','rows' => '5'),
             ))
             ->add('order','number', array(
                 'required' => false,
