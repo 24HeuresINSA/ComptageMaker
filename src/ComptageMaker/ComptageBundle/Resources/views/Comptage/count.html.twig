@@ -38,7 +38,8 @@
                     <td>{{ session.entries }}</td>
                     <td>{{ session.prix }}€</td>
                     {% if not is_granted('ROLE_ADMIN') %}
-                        <td><input type="checkbox" ng-model="session.checked" ng-checked="session.checked"  data-my-checkbox ng-show="false"/></td>
+                        <td ng-show="false"><input type="checkbox" ng-model="session.checked" ng-checked="session.checked"  data-my-checkbox /></td>
+                        <td ng-show="session.checked"><i class="glyphicon glyphicon-check"></i></td>
                         {# <td><a class="btn btn-primary">S'inscrire</a></td> #}
                     {% endif %}
                 </tr>
